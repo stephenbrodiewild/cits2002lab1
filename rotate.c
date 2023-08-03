@@ -19,6 +19,13 @@ char rotate(char c)
         // allowing for wrap-around
         return ('a' + (c - 'a' + ROT) % 26);
     }
+    // Check if c is upper-case or not
+    else if (isupper(c)) {
+        // The ciphered character is ROT positions beyond c,
+        // allowing for wrap-around
+        return ('A' + (c - 'A' + ROT) % 26);
+    }
+    // If c is neither upper-case nor lower-case, return c
     else {
         return c;
     }
