@@ -42,7 +42,7 @@ int main(int argcount, char *argvalue[])
         // Loop for every character in the text
         for(int i = 0; i < length; i++) {
             // Determine and print the ciphered character
-            printf("%c\n", rotate(argvalue[1][i]));
+            printf("%c\t%c\n", rotate(argvalue[1][i]), argvalue[1][i]);
         }
 
         // Print one final new-line character
