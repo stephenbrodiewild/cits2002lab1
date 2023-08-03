@@ -37,24 +37,27 @@ int main(int argcount, char *argvalue[])
 {
     // Exit with an error if the number of arguments (including
     // the name of the executable) is not precisely 2
-    if(argcount != 2) {
+    if(argcount < 2) {
         fprintf(stderr, "%s: program expected 1 argument, but instead received %d\n",
                     argvalue[0], argcount-1);
         exit(EXIT_FAILURE);
     }
     else {
-        // Calculate the length of the first argument
-        int length = strlen(argvalue[1]);
+        // determine the length of each argument to be rotated
+        for (int arg = 1; arg < argcount; arg++){
+            int length = strlen(argvalue[arg]);
+       
+
 
         // Loop for every character in the text
-        for(int i = 0; i < length; i++) {
-            // Determine and print the ciphered character
-            printf("%c\t%c\t%i\n", rotate(argvalue[1][i]), argvalue[1][i], i);
-        }
+            for(int i = 0; i < length; i++) {
+                // Determine and print the ciphered character
+                printf("%c\t%c\t%i\n", rotate(argvalue[arg][i]), argvalue[arg][i], i);
+            }
 
         // Print one final new-line character
         printf("\n");
-
+        }
         // Exit indicating success
         exit(EXIT_SUCCESS);
     }
