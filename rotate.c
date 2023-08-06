@@ -6,24 +6,24 @@
 // Compile this program with:
 //    cc -std=c11 -Wall -Werror -o rotate rotate.c
 
-#define ROT 3
+#define ROT 1
 
 //  The rotate function returns the character ROT positions further along the
 //  alphabetic character sequence from c, or c if c is not lower-case
 
-char rotate(char c)
+char rotate(char c, int number)
 {
     // Check if c is lower-case or not
     if(islower(c)) {
         // The ciphered character is ROT positions beyond c,
         // allowing for wrap-around
-        return ('a' + (c - 'a' + ROT) % 26);
+        return ('a' + (c - 'a' + number) % 26);
     }
     // Check if c is upper-case or not
     else if (isupper(c)) {
         // The ciphered character is ROT positions beyond c,
         // allowing for wrap-around
-        return ('A' + (c - 'A' + ROT) % 26);
+        return ('A' + (c - 'A' + number) % 26);
     }
     // If c is neither upper-case nor lower-case, return c
     else {
@@ -43,16 +43,17 @@ int main(int argcount, char *argvalue[])
         exit(EXIT_FAILURE);
     }
     else {
+        // get the number of rotations from the first argument
+        int rot = atoi(argvalue[1]);
+
         // determine the length of each argument to be rotated
-        for (int arg = 1; arg < argcount; arg++){
+        for (int arg = 2; arg < argcount; arg++){
             int length = strlen(argvalue[arg]);
        
-
-
         // Loop for every character in the text
             for(int i = 0; i < length; i++) {
                 // Determine and print the ciphered character
-                printf("%c\t%c\t%i\n", rotate(argvalue[arg][i]), argvalue[arg][i], i);
+                printf("%c\t%c\t%i\n", rotate(argvalue[arg][i], rot), argvalue[arg][i], i);
             }
 
         // Print one final new-line character
